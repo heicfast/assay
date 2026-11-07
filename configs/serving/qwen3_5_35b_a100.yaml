@@ -1,0 +1,17 @@
+# Serving spec: Qwen3.5-35B-A3B on the A100 tier (8x sm80).
+# Every flag here is a RECORDED TREATMENT (ServerLaunchRecord lands in the run).
+model_id: Qwen/Qwen3.5-35B-A3B
+revision: PIN_EXACT_REVISION_BEFORE_RUN
+dtype: bfloat16          # bf16 is the reference arm on A100 (no native FP8 compute on sm80)
+quantization: none       # bf16 ~72GB fits one 80GB card with KV headroom
+tensor_parallel: 1
+max_model_len: 65536     # the STUDY's context budget — never the advertised max
+gpu_memory_utilization: 0.90
+reasoning_parser: qwen3
+enable_prefix_caching: true
+port: 8000
+notes: >
+  A100 (sm80) kernel path: FA2-class attention, FlashInfer where available;
+  FP8 W8A8 compute is NOT native on Ampere — FP8 checkpoints would degrade
+  to W8A16 (Marlin). The bf16 arm is the reference; FP8 runs are separate
+  recorded treatments on the H100 tier.

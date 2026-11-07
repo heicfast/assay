@@ -1,0 +1,15 @@
+# Serving spec: Llama-4-Scout on the A100 tier (bf16, tp=8).
+model_id: meta-llama/Llama-4-Scout-17B-16E-Instruct
+revision: PIN_EXACT_REVISION_BEFORE_RUN
+dtype: bfloat16
+quantization: none       # no official FP8 for Scout; bf16 ~218GB across the node
+tensor_parallel: 8
+max_model_len: 131072    # advertised 10M context; the STUDY caps at 128K (recorded budget)
+gpu_memory_utilization: 0.90
+reasoning_parser: null   # no native think channel
+enable_prefix_caching: true
+port: 8002
+notes: >
+  Context-budget treatment: the advertised 10M context is a model capability,
+  not a safe allocation; raising the cap requires a new probe artifact and is
+  analyzed as a context-budget treatment, never a silent change.

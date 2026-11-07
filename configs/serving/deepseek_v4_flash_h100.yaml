@@ -1,0 +1,18 @@
+# Serving spec: DeepSeek-V4-Flash on the H100 tier (8x sm90, FP8 native).
+# DeepGEMM/FlashMLA-class kernels engage through vLLM V1 on Hopper; the
+# launch record captures the effective attention backend.
+model_id: deepseek-ai/DeepSeek-V4-Flash
+revision: PIN_EXACT_REVISION_BEFORE_RUN
+dtype: bfloat16
+quantization: fp8        # native FP8 Mixed checkpoint (FP8 dense + FP4 experts)
+tensor_parallel: 8
+max_model_len: 65536
+gpu_memory_utilization: 0.92
+reasoning_parser: deepseek_r1
+enable_prefix_caching: true
+port: 8001
+notes: >
+  Hopper kernel stack (verified 2026-11-07): FA3-class attention, FP8 GEMMs
+  via FlashInfer/DeepGEMM, MLA path via FlashMLA — all selected by vLLM V1
+  and recorded in the launch record. Probe gates: served-id presence, test
+  generation, VRAM headroom at the declared max_model_len.

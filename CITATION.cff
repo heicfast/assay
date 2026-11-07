@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: >-
+  If you use ASSAY in your research, please cite it along with the
+  frozen protocol revision you used.
+title: ASSAY
+type: software
+authors:
+  - given-names: heicfast
+    alias: heicfast
+identifiers:
+  - type: url
+    value: "https://github.com/heicfast/assay"
+repository-code: "https://github.com/heicfast/assay"
+abstract: >-
+  ASSAY is an open research framework for measuring LLM safety the way
+  assays measure purity and strength: a standardized, quantitative test.
+  It combines validated multi-judge instrumentation calibrated against
+  human labels, a literature-grounded static and adaptive multi-turn
+  attack battery, and mechanistic refusal-direction analysis, across the
+  frontier model matrix, with preregistered statistics, full provenance,
+  fail-closed budgets, and a 90-day coordinated-disclosure pipeline.
+keywords:
+  - llm-safety
+  - red-teaming
+  - jailbreak-research
+  - measurement-validity
+  - interpretability
+  - refusal-direction
+license: Apache-2.0

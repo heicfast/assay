@@ -1,0 +1,45 @@
+# --- secrets (never commit; rotate anything that touches a repo) --------------
+.env
+.env.*
+*.pem
+*.key
+credentials*
+*_token*
+hf_token*
+token.txt
+
+# --- python -------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.whl
+
+# --- research outputs (evidence lives in runs/, never in git) ------------------
+runs/
+data/cache/
+data/raw/
+data/labels/*.csv
+!data/labels/.gitkeep
+*.sqlite
+*.db
+*.parquet
+*.duckdb
+worklogs/
+
+# --- tooling ------------------------------------------------------------------
+.DS_Store
+*.log
+.ipynb_checkpoints/
+.idea/
+.vscode/
